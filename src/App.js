@@ -3,6 +3,8 @@ import { Switch, Route, Link } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./App.css";
 
+import EditUserDeliveryAddress from "./components/customer/edit-delivery-address.component"
+import Profile from "./components/customer/profile.component"
 import Home from "./components/customer/top-selling-books.component";
 import BookCatalog from "./components/customer/book-catalog.component"
 import BookList from "./components/seller/books.component"
@@ -128,6 +130,11 @@ class App extends Component {
                   Hello, {this.state.currentUser.username}
               </li>
               <li className="nav-item">
+                <Link to={"/profile"} className="nav-link">
+                  Profile
+                </Link>
+              </li>
+              <li className="nav-item">
                 <a href="/login" className="nav-link" onClick={this.logOut}>
                   Log out
                 </a>
@@ -163,6 +170,7 @@ class App extends Component {
             <Route exact path="/my-orders" component={OrderOfCurrentUser}/>
             <Route exact path="/cart" component={Cart}/>
 
+            <Route path="/users/:id/delivery-address" component={EditUserDeliveryAddress}/>
             <Route path="/users/:id" component={EditUser}/>
             <Route path="/users/:id/blocked" component={EditUser}/>
             <Route exact path="/add-user" component={AddUser}/>

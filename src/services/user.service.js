@@ -25,6 +25,10 @@ class UserService {
     return axios.patch(API_URL + '/' + + id + '/disabled', disabled, { headers: authHeader() });
   }
 
+  updateDeliveryAddress(id, deliveryAddress) {
+    return axios.patch(API_URL + '/' + id + '/delivery-address', deliveryAddress, { headers: authHeader() })
+  }
+
 }
 
 export default new UserService();
