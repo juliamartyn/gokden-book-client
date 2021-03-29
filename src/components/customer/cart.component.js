@@ -30,10 +30,14 @@ class CartComponent extends React.Component {
     }
 
     confirmOrder() {
-        OrderService.confirmOrder(this.state.id).then(response =>{
-            toast('Ordered');
-            window.location.reload();
-        });
+        if(this.state.buyer.deliveryAddress == null){
+            toast('Please, firstly set your delivery address in your Profile');
+        } else {
+            OrderService.confirmOrder(this.state.id).then(response => {
+                toast('Ordered');
+                window.location.reload();
+            });
+        }
     }
 
     deleteBookFromCart(bookId) {
