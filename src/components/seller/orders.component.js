@@ -37,6 +37,7 @@ class OrdersComponent extends React.Component {
                                         <p>Status - {order.status}</p>
                                         <p>Buyer: {order.buyer.username}</p>
                                         <p>Phone number: {order.buyer.phone}</p>
+                                        <p>Delivery address: <br></br> {order.buyer.deliveryAddress}</p>
                                     </div>
 
                                     <div>
