@@ -1,6 +1,14 @@
 import React, { Component } from 'react'
 import BookService from '../../services/book.service';
 
+import DatePicker from 'react-datepicker';
+import "react-datepicker/dist/react-datepicker.css";
+import 'bootstrap/dist/css/bootstrap.min.css';
+
+import {toast} from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+toast.configure();
+
 class AddBookComponent extends Component{
 
     constructor(props){
@@ -12,10 +20,18 @@ class AddBookComponent extends Component{
             description: '',
             price: '',
             quantity: '',
+            startSaleDate: '',
             selectedFile: '',
             message: null
         }
         this.saveBook = this.saveBook.bind(this);
+        this.handleChangeDate = this.handleChangeDate.bind(this);
+    }
+
+    handleChangeDate(date) {
+        this.setState({
+            startSaleDate: date
+        })
     }
 
     onChange = (e) =>
@@ -34,14 +50,14 @@ class AddBookComponent extends Component{
             description: this.state.description,
             price: this.state.price,
             quantity: this.state.quantity,
+            startSaleDate: this.state.startSaleDate
         }
         const formData = new FormData();
         formData.append('file', this.state.selectedFile);
         formData.append("book", JSON.stringify(bookRequest));
 
         BookService.addBook(formData).then(res => {
-                console.log(res.data);
-                alert("Book created successfully.");
+            toast('Book created successfully');
         });
     };
 
@@ -49,44 +65,54 @@ class AddBookComponent extends Component{
         return(
             <div>
                 <h2 className="text-center">Add new book</h2>
-                <form>
-                    <div className="form-group">
+                <div style={{"display": "grid", "gridTemplateColumns": "repeat(auto-fit, 30rem)"}}>
+                    <div>
+                    <div className="form-group w-75">
                         <label>Title:</label>
                         <input type="text" placeholder="title" name="title" className="form-control" value={this.state.title} onChange={this.onChange}/>
                     </div>
 
-                    <div className="form-group">
+                    <div className="form-group w-75">
                         <label>Author:</label>
                         <input type="text" placeholder="author" name="author" className="form-control" value={this.state.author} onChange={this.onChange}/>
                     </div>
 
-                    <div className="form-group">
+                    <div className="form-group w-75">
                         <label>Category:</label>
                         <input placeholder="category" name="category" className="form-control" value={this.state.category} onChange={this.onChange}/>
                     </div>
 
-                    <div className="form-group">
+                    <div className="form-group w-75">
                         <label>Description:</label>
                         <input placeholder="description" name="description" className="form-control" value={this.state.description} onChange={this.onChange}/>
                     </div>
+                    </div>
 
-                    <div className="form-group">
+                    <div>
+                    <div className="form-group w-75">
                         <label>Price:</label>
                         <input placeholder="price" name="price" className="form-control" value={this.state.price} onChange={this.onChange}/>
                     </div>
 
-                    <div className="form-group">
+                    <div className="form-group w-75">
                         <label>Quantity:</label>
                         <input type="numeric" placeholder="quantity" name="quantity" className="form-control" value={this.state.quantity} onChange={this.onChange}/>
                     </div>
 
-                    <div className="form-group">
+                    <div className="form-group w-75">
                         <label>Image:</label>
                         <input type="file" name="file" className="form-control" onChange={this.onFileChange}/>
                     </div>
 
+                    <div className="form-group w-75">
+                        <label>Start selling date:</label>
+                        <DatePicker selected={ this.state.startSaleDate } onChange={ this.handleChangeDate }
+                                    showTimeSelect timeFormat="HH:mm" timeIntervals={30} timeCaption="time" dateFormat="MMMM d, yyyy h:mm aa"/>
+                    </div>
+                    </div>
+                </div>
                     <button className="btn btn-success" onClick={this.saveBook}>Save</button>
-                </form>
+
             </div>
         );
     }
