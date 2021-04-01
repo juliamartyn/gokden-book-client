@@ -12,6 +12,8 @@ import AddBook from "./components/seller/add-book.component"
 import EditBook from "./components/seller/edit-book.component"
 import Orders from "./components/seller/orders.component"
 import UpdateOrder from "./components/seller/update-order.component"
+
+import PreOrderOfCurrentUser from "./components/customer/pre-orders.component"
 import OrderOfCurrentUser from "./components/customer/order-list.component"
 import Cart from "./components/customer/cart.component"
 
@@ -169,6 +171,7 @@ class App extends Component {
             <Route exact path="/orders" component={Orders}/>
             <Route path="/orders/:id" component={UpdateOrder}/>
             <Route exact path="/my-orders" component={OrderOfCurrentUser}/>
+            <Route exact path="/pre-orders" component={PreOrderOfCurrentUser}/>
             <Route exact path="/cart" component={Cart}/>
 
             <Route path="/users/:id/delivery-address" component={EditUserDeliveryAddress}/>

@@ -63,8 +63,8 @@ class AllBooksComponent extends React.Component {
                                         <h5 className="card-title">{book.title}</h5>
                                         <p className="card-text">{book.author}</p>
                                         <p className="card-text">${book.price}</p>
-                                        <a href="#" className="btn btn-warning btn-block"
-                                           onClick={() => this.orderBook(book.id)}>Add to cart</a>
+                                        <button className="btn btn-warning btn-block"
+                                           onClick={() => this.orderBook(book.id)} disabled={book.quantity === 0}>Add to cart</button>
                                     </div>
                                 </div>
                     )}
@@ -82,7 +82,8 @@ class AllBooksComponent extends React.Component {
                                     <h5 className="card-title">{book.title}</h5>
                                     <p className="card-text">{book.author}</p>
                                     <p className="card-text">${book.price}</p>
-                                    <a href="#" className="btn btn-warning btn-block" onClick={() => this.orderBook(book.id)}>Add to cart</a>
+                                    <button className="btn btn-warning btn-block"
+                                            onClick={() => this.orderBook(book.id)} disabled={book.quantity === 0}>Add to cart</button>
                                 </div>
                             </div>
                     )}
@@ -100,7 +101,8 @@ class AllBooksComponent extends React.Component {
                                         <h5 className="card-title">{book.title}</h5>
                                         <p className="card-text">{book.author}</p>
                                         <p className="card-text">${book.price}</p>
-                                        <a href="#" className="btn btn-warning btn-block" onClick={() => this.orderBook(book.id)}>Add to cart</a>
+                                        <button className="btn btn-warning btn-block"
+                                                onClick={() => this.orderBook(book.id)} disabled={book.quantity === 0}>Add to cart</button>
                                     </div>
                                 </div>
                     )}
@@ -118,7 +120,8 @@ class AllBooksComponent extends React.Component {
                                     <h5 className="card-title">{book.title}</h5>
                                     <p className="card-text">{book.author}</p>
                                     <p className="card-text">${book.price}</p>
-                                    <a href="#" className="btn btn-warning btn-block" onClick={() => this.orderBook(book.id)}>Add to cart</a>
+                                    <button className="btn btn-warning btn-block"
+                                            onClick={() => this.orderBook(book.id)} disabled={book.quantity === 0}>Add to cart</button>
                                 </div>
                             </div>
                     )}

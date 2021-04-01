@@ -46,11 +46,16 @@ class CartComponent extends React.Component {
         });
     }
 
+    openPreOrder() {
+        this.props.history.push('/pre-orders');
+    }
+
     render (){
         return (
             <div>
-                <h1 className = "text-center"> Cart</h1>
+                <button className="btn btn-outline-warning float-right" onClick={() => this.openPreOrder()}>My pre-orders</button>
                 <br></br>
+                <h1 className = "text-center mt-3"> Cart</h1>
                 <br></br>
                 {this.state.books.length !== 0 ?
                         <div className="card mt-0" style={{"width": "75%"}}>
