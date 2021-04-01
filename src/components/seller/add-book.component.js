@@ -107,7 +107,7 @@ class AddBookComponent extends Component{
                     <div className="form-group w-75">
                         <label>Start selling date:</label>
                         <DatePicker selected={ this.state.startSaleDate } onChange={ this.handleChangeDate }
-                                    showTimeSelect timeFormat="HH:mm" timeIntervals={30} timeCaption="time" dateFormat="MMMM d, yyyy h:mm aa"/>
+                                    dateFormat="MMMM d, yyyy"/>
                     </div>
                     </div>
                 </div>
