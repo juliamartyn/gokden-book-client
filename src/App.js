@@ -13,6 +13,7 @@ import EditBook from "./components/seller/edit-book.component"
 import Orders from "./components/seller/orders.component"
 import UpdateOrder from "./components/seller/update-order.component"
 import SoldBooksReport from "./components/seller/report.component"
+import Email from "./components/seller/email.component"
 
 import PreOrderOfCurrentUser from "./components/customer/pre-orders.component"
 import OrderOfCurrentUser from "./components/customer/order-list.component"
@@ -101,6 +102,11 @@ class App extends Component {
                       Reports
                     </Link>
                   </li>
+                  <li className="nav-item">
+                    <Link to={"/email"} className="nav-link">
+                      Emails History
+                    </Link>
+                  </li>
                 </ul>
             ) : ''
             }
@@ -174,6 +180,7 @@ class App extends Component {
             <Route exact path="/add-book" component={AddBook}/>
             <Route path="/books/:id" component={EditBook}/>
             <Route exact path="/report" component={SoldBooksReport}/>
+            <Route exact path="/email" component={Email}/>
 
 
             <Route exact path="/orders" component={Orders}/>
