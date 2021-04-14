@@ -22,16 +22,17 @@ class BookListComponent extends React.Component {
     }
 
     updateBook(id) {
-        console.log('update ' + id)
         this.props.history.push(`/books/${id}`)
     }
 
     deleteBook(id) {
         BookService.deleteBook(id).then(r => {
-            console.log("Book deleted");
-            // this.props.history.push('/book-list');
             window.location.reload();
         });
+    }
+
+    discount() {
+        this.props.history.push('/discount');
     }
 
     render (){
@@ -39,9 +40,8 @@ class BookListComponent extends React.Component {
             <div>
                 <h1 className = "text-center"> Books</h1>
                 <button className="btn btn-warning" onClick={() => this.addBook()}> Create Book</button>
-                <br></br>
-                <br></br>
-                <table className = "table table-striped text-center">
+                <button className="btn btn-outline-warning ml-3" onClick={() => this.discount()}>Create discount</button>
+                <table className="table table-striped text-center mt-4">
                     <thead>
                     <tr>
                         <th> Id</th>

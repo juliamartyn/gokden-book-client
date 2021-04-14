@@ -67,7 +67,9 @@ class CartComponent extends React.Component {
                                             <img className="card-img-top" src={`data:image/png;base64,${book.image}`} alt="Card image cap" style={{"width": "130px", "height": "200px"}}></img>
                                            <div>
                                             <h5>{book.title} - {book.author}</h5>
-                                            <p>Price ${book.price}</p>
+                                            {book.priceWithDiscount == book.price ? <p className="card-text">${book.price}</p> :
+                                                   <p className="card-text"><del className="text-danger">${book.price}</del> ${book.priceWithDiscount}</p>
+                                            }
                                            </div>
                                         </div>
                                         <hr style={{"border": "1px solid #ffc107"}}></hr>

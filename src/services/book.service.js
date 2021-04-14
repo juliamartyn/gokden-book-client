@@ -33,6 +33,13 @@ class BookService {
         return axios.get(API_URL + "top/" + category, { headers: authHeader() });
     }
 
+    addDiscount(discountRequest){
+        return axios.post(API_URL + "apply-discount", discountRequest, { headers: authHeader() });
+    }
+
+    getPageableBooks(pageNo){
+        return axios.get(API_URL + "page/" + pageNo, { headers: authHeader() });
+    }
 }
 
 export default new BookService();

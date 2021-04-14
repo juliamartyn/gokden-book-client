@@ -56,7 +56,9 @@ class BookCatalogComponent extends React.Component {
                                         <h5 className="card-title">{book.title}</h5>
                                         <p className="card-text">{book.author}</p>
                                         <p className="card-text">Category: {book.category}</p>
-                                        <p className="card-text">${book.price}</p>
+                                        {book.priceWithDiscount == book.price ? <p className="card-text">${book.price}</p> :
+                                            <p className="card-text"><del className="text-danger">${book.price}</del> ${book.priceWithDiscount}</p>
+                                        }
                                         <this.ButtonRender date={book.startSaleDate} bookId={book.id} isDisabled={book.quantity === 0}></this.ButtonRender>
                                     </div>
                                 </div>

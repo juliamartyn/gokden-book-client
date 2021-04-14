@@ -42,6 +42,25 @@ class AllBooksComponent extends React.Component {
         });
     }
 
+    bookCard(book){
+        return <div className="card mt-0" style={{"width": "15rem", "padding": "0px"}} key={book.id}>
+            <div className="text-center">
+                <img className="card-img-top" src={`data:image/png;base64,${book.image}`}
+                     alt="Card image cap" style={{"width": "150px", "height": "225px"}}></img>
+            </div>
+            <div className="card-body">
+                <h5 className="card-title">{book.title}</h5>
+                <p className="card-text">{book.author}</p>
+                {book.priceWithDiscount == book.price ? <p className="card-text">${book.price}</p> :
+                    <p className="card-text"><del className="text-danger">${book.price}</del> ${book.priceWithDiscount}</p>
+                }
+                <button className="btn btn-warning btn-block"
+                        onClick={() => this.orderBook(book.id)} disabled={book.quantity === 0}>Add to cart</button>
+            </div>
+        </div>
+    }
+
+
     render (){
         return (
             <div>
@@ -54,19 +73,7 @@ class AllBooksComponent extends React.Component {
                     <div style={{"display": "grid", "grid-template-columns": "repeat(auto-fit, 16.5rem)", "justify-content": "center"}}>
                     {this.state.booksFiction.map(
                             book =>
-                                <div className="card mt-0" style={{"width": "15rem", "padding": "0px"}} key={book.id}>
-                                    <div className="text-center">
-                                        <img className="card-img-top" src={`data:image/png;base64,${book.image}`}
-                                             alt="Card image cap" style={{"width": "150px", "height": "225px"}}></img>
-                                    </div>
-                                    <div className="card-body">
-                                        <h5 className="card-title">{book.title}</h5>
-                                        <p className="card-text">{book.author}</p>
-                                        <p className="card-text">${book.price}</p>
-                                        <button className="btn btn-warning btn-block"
-                                           onClick={() => this.orderBook(book.id)} disabled={book.quantity === 0}>Add to cart</button>
-                                    </div>
-                                </div>
+                                this.bookCard(book)
                     )}
                     </div>
                     <h3> Fantasy</h3>
@@ -74,18 +81,7 @@ class AllBooksComponent extends React.Component {
                     <div style={{"display": "grid", "grid-template-columns": "repeat(auto-fit, 16.5rem)", "justify-content": "center"}}>
                     {this.state.booksFantasy.map(
                         book =>
-                            <div className="card mt-0" style={{"width" : "15rem", "padding": "0px"}} key={book.id}>
-                                <div className="text-center">
-                                    <img className="card-img-top" src={`data:image/png;base64,${book.image}`} alt="Card image cap" style={{"width": "150px", "height": "225px"}}></img>
-                                </div>
-                                <div className="card-body">
-                                    <h5 className="card-title">{book.title}</h5>
-                                    <p className="card-text">{book.author}</p>
-                                    <p className="card-text">${book.price}</p>
-                                    <button className="btn btn-warning btn-block"
-                                            onClick={() => this.orderBook(book.id)} disabled={book.quantity === 0}>Add to cart</button>
-                                </div>
-                            </div>
+                            this.bookCard(book)
                     )}
                     </div>
                     <h3> Crime</h3>
@@ -93,18 +89,7 @@ class AllBooksComponent extends React.Component {
                     <div style={{"display": "grid", "grid-template-columns": "repeat(auto-fit, 16.5rem)", "justify-content": "center"}}>
                     {this.state.booksCrime.map(
                             book =>
-                                <div className="card mt-0" style={{"width" : "15rem", "padding": "0px"}} key={book.id}>
-                                    <div className="text-center">
-                                        <img className="card-img-top" src={`data:image/png;base64,${book.image}`} alt="Card image cap" style={{"width": "150px", "height": "225px"}}></img>
-                                    </div>
-                                    <div className="card-body">
-                                        <h5 className="card-title">{book.title}</h5>
-                                        <p className="card-text">{book.author}</p>
-                                        <p className="card-text">${book.price}</p>
-                                        <button className="btn btn-warning btn-block"
-                                                onClick={() => this.orderBook(book.id)} disabled={book.quantity === 0}>Add to cart</button>
-                                    </div>
-                                </div>
+                                this.bookCard(book)
                     )}
                     </div>
                     <h3> Biography</h3>
@@ -112,18 +97,7 @@ class AllBooksComponent extends React.Component {
                     <div style={{"display": "grid", "grid-template-columns": "repeat(auto-fit, 16.5rem)", "justify-content": "center"}}>
                     {this.state.booksBiography.map(
                         book =>
-                            <div className="card mt-0" style={{"width" : "15rem", "padding": "0px"}} key={book.id}>
-                                <div className="text-center">
-                                    <img className="card-img-top" src={`data:image/png;base64,${book.image}`} alt="Card image cap" style={{"width": "150px", "height": "225px"}}></img>
-                                </div>
-                                <div className="card-body">
-                                    <h5 className="card-title">{book.title}</h5>
-                                    <p className="card-text">{book.author}</p>
-                                    <p className="card-text">${book.price}</p>
-                                    <button className="btn btn-warning btn-block"
-                                            onClick={() => this.orderBook(book.id)} disabled={book.quantity === 0}>Add to cart</button>
-                                </div>
-                            </div>
+                            this.bookCard(book)
                     )}
                     </div>
                 </div>

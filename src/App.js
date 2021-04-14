@@ -14,6 +14,7 @@ import Orders from "./components/seller/orders.component"
 import UpdateOrder from "./components/seller/update-order.component"
 import SoldBooksReport from "./components/seller/report.component"
 import Email from "./components/seller/email.component"
+import Discount from "./components/seller/add-discount.component"
 
 import PreOrderOfCurrentUser from "./components/customer/pre-orders.component"
 import OrderOfCurrentUser from "./components/customer/order-list.component"
@@ -181,6 +182,7 @@ class App extends Component {
             <Route path="/books/:id" component={EditBook}/>
             <Route exact path="/report" component={SoldBooksReport}/>
             <Route exact path="/email" component={Email}/>
+            <Route exact path="/discount" component={Discount}/>
 
 
             <Route exact path="/orders" component={Orders}/>
