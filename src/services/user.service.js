@@ -1,7 +1,7 @@
 import axios from 'axios';
 import authHeader from './auth-header';
 
-const API_URL = 'http://localhost:8080/api/users';
+const API_URL = 'http://localhost:8080/api/users/';
 
 class UserService {
 
@@ -14,21 +14,24 @@ class UserService {
   }
 
   getUserById(userId){
-    return axios.get(API_URL + '/' + userId, { headers: authHeader() });
+    return axios.get(API_URL + userId, { headers: authHeader() });
   }
 
   updateUser(id, user) {
-    return axios.patch(API_URL + '/' + id + '/username', user, { headers: authHeader() });
+    return axios.patch(API_URL + id + '/username', user, { headers: authHeader() });
   }
 
   updateUserDisabled(id, disabled) {
-    return axios.patch(API_URL + '/' + + id + '/disabled', disabled, { headers: authHeader() });
+    return axios.patch(API_URL + id + '/disabled', disabled, { headers: authHeader() });
   }
 
   updateDeliveryAddress(id, deliveryAddress) {
-    return axios.patch(API_URL + '/' + id + '/delivery-address', deliveryAddress, { headers: authHeader() })
+    return axios.patch(API_URL + id + '/delivery-address', deliveryAddress, { headers: authHeader() })
   }
 
+  getPageableUsers(pageNo){
+    return axios.get(API_URL + "page/" + pageNo, { headers: authHeader() });
+  }
 }
 
 export default new UserService();

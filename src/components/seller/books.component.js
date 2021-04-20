@@ -35,12 +35,17 @@ class BookListComponent extends React.Component {
         this.props.history.push('/discount');
     }
 
+    coupon() {
+        this.props.history.push('/add-coupon');
+    }
+
     render (){
         return (
             <div>
                 <h1 className = "text-center"> Books</h1>
                 <button className="btn btn-warning" onClick={() => this.addBook()}> Create Book</button>
                 <button className="btn btn-outline-warning ml-3" onClick={() => this.discount()}>Create discount</button>
+                <button className="btn btn-outline-warning ml-3" onClick={() => this.coupon()}>Create coupon</button>
                 <table className="table table-striped text-center mt-4">
                     <thead>
                     <tr>

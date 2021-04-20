@@ -48,6 +48,10 @@ class OrderService {
     confirmPreOrder(orderId){
         return axios.patch(API_URL + "pre-orders/" + orderId + "/confirm", null, { headers: authHeader() });
     }
+
+    applyCoupon(orderId, couponId){
+        return axios.patch(API_URL + orderId + "/apply-coupon/" + couponId, null,{ headers: authHeader() });
+    }
 }
 
 export default new OrderService();

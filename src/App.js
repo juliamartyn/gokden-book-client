@@ -15,6 +15,8 @@ import UpdateOrder from "./components/seller/update-order.component"
 import SoldBooksReport from "./components/seller/report.component"
 import Email from "./components/seller/email.component"
 import Discount from "./components/seller/add-discount.component"
+import AddCoupon from "./components/seller/add-coupon.component"
+import Coupons from "./components/customer/coupons.component"
 
 import PreOrderOfCurrentUser from "./components/customer/pre-orders.component"
 import OrderOfCurrentUser from "./components/customer/order-list.component"
@@ -183,7 +185,8 @@ class App extends Component {
             <Route exact path="/report" component={SoldBooksReport}/>
             <Route exact path="/email" component={Email}/>
             <Route exact path="/discount" component={Discount}/>
-
+            <Route exact path="/add-coupon" component={AddCoupon}/>
+            <Route exact path="/orders/:id/coupons" component={Coupons}/>
 
             <Route exact path="/orders" component={Orders}/>
             <Route path="/orders/:id" component={UpdateOrder}/>
