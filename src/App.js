@@ -18,6 +18,14 @@ import Discount from "./components/seller/add-discount.component"
 import AddCoupon from "./components/seller/add-coupon.component"
 import Coupons from "./components/customer/coupons.component"
 
+import AddReadAndReturn from "./components/seller/readAndReturn/add-book-to-readreturn.component";
+import ReadAndReturnList from "./components/seller/readAndReturn/readreturn-books-list.component";
+import ReadAndReturnBooks from "./components/customer/readAndReturn/readreturn-books-list.component";
+import ReadAndReturnRent from  "./components/customer/readAndReturn/rent-book.component";
+import RentedBooks from "./components/seller/readAndReturn/readreturn-rented-books.component";
+import UpdatePricePerDay from "./components/seller/readAndReturn/update-price-per-day.component";
+import SubscribeEmailReminder from "./components/customer/readAndReturn/readreturn-subscribe-emailreminding.component";
+
 import PreOrderOfCurrentUser from "./components/customer/pre-orders.component"
 import OrderOfCurrentUser from "./components/customer/order-list.component"
 import Cart from "./components/customer/cart.component"
@@ -110,6 +118,11 @@ class App extends Component {
                       Emails History
                     </Link>
                   </li>
+                  <li className="nav-item">
+                    <Link to={"/read-and-return-books"} className="nav-link">
+                      Read&Return
+                    </Link>
+                  </li>
                 </ul>
             ) : ''
             }
@@ -134,6 +147,11 @@ class App extends Component {
                   <li className="nav-item">
                     <Link to={"/cart"} className="nav-link">
                       Cart
+                    </Link>
+                  </li>
+                  <li className="nav-item">
+                    <Link to={"/read-and-return-book-catalog"} className="nav-link">
+                      Read&Return
                     </Link>
                   </li>
                 </ul>
@@ -187,6 +205,14 @@ class App extends Component {
             <Route exact path="/discount" component={Discount}/>
             <Route exact path="/add-coupon" component={AddCoupon}/>
             <Route exact path="/orders/:id/coupons" component={Coupons}/>
+
+            <Route path="/read-and-return/books/:id" component={AddReadAndReturn}/>
+            <Route exact path="/read-and-return-books" component={ReadAndReturnList}/>
+            <Route exact path="/read-and-return-books/:id" component={UpdatePricePerDay}/>
+            <Route exact path="/read-and-return-book-catalog" component={ReadAndReturnBooks}/>
+            <Route exact path="/read-and-return/rent/:id" component={ReadAndReturnRent}/>
+            <Route exact path="/rented-books" component={RentedBooks}/>
+            <Route exact path="/:id/subscribe-email-reminder" component={SubscribeEmailReminder}/>
 
             <Route exact path="/orders" component={Orders}/>
             <Route path="/orders/:id" component={UpdateOrder}/>
