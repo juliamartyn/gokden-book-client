@@ -10,7 +10,7 @@ class UserService {
   }
 
   addUser(user) {
-    return axios.post(API_URL, user);
+    return axios.post(API_URL, user, { headers: authHeader() });
   }
 
   getUserById(userId){

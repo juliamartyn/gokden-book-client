@@ -1,5 +1,6 @@
 import React from 'react';
 import OrderService from '../../services/order.service';
+import {toast} from "react-toastify";
 
 class OrdersComponent extends React.Component {
 
@@ -20,13 +21,19 @@ class OrdersComponent extends React.Component {
         this.props.history.push(`/orders/${orderId}`)
     }
 
+    sendEOrder(orderId){
+        OrderService.sendEOrder(orderId).then(() =>{
+            toast('Sent');
+        });
+    }
+
 
     render (){
         return (
             <div>
                 <h1 className = "text-center"> Orders</h1>
-                <br></br>
-                <br></br>
+                <br/>
+                <br/>
                 {
                     this.state.orders.map(order =>
                         <div className="card mt-0" style={{"width": "75%"}} key={order.id}>
@@ -37,7 +44,7 @@ class OrdersComponent extends React.Component {
                                         <p>Status - {order.status}</p>
                                         <p>Buyer: {order.buyer.username}</p>
                                         <p>Phone number: {order.buyer.phone}</p>
-                                        <p>Delivery address: <br></br> {order.buyer.deliveryAddress}</p>
+                                        <p>Delivery address: <br/> {order.buyer.deliveryAddress}</p>
                                     </div>
 
                                     <div>
@@ -45,20 +52,23 @@ class OrdersComponent extends React.Component {
                                         {order.books.map(book =>
                                             <div>
                                                 <div style={{"display": "grid", "gridTemplateColumns": "repeat(auto-fit, 9rem)"}}>
-                                                    <img className="card-img-top" src={`data:image/png;base64,${book.image}`} alt="Card image cap" style={{"width": "100px"}}></img>
+                                                    <img className="card-img-top" src={`data:image/png;base64,${book.image}`} alt="Card image cap" style={{"width": "100px"}}/>
                                                     <div>
                                                         <h5>{book.title}</h5>
                                                         <h5>{book.author}</h5>
                                                         <p>Price ${book.price}</p>
                                                     </div>
                                                 </div>
-                                                <hr style={{"border": "1px solid #ffc107"}}></hr>
+                                                <hr style={{"border": "1px solid #ffc107"}}/>
                                             </div>
                                         )}
                                     </div>
                                 </div>
 
-                                <a href="#" className="btn btn-warning" onClick={() => this.changeStatus(order.id)}>Change status</a>
+                                <button className="btn btn-warning" onClick={() => this.changeStatus(order.id)}>Change status</button>
+                                {order.status == "E_ORDERED" ?
+                                    <button className="btn btn-warning ml-1" onClick={() => this.sendEOrder(order.id)}>Send email with E-Book</button>
+                                : ''}
                                 <p className="card-text float-right font-weight-bold">Total Price: ${order.totalPrice}</p>
                             </div>
                         </div>

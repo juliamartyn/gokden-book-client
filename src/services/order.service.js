@@ -9,6 +9,10 @@ class OrderService {
         return axios.put(API_URL + "add-book/" + bookId, null, { headers: authHeader() });
     }
 
+    orderEBook(bookId) {
+        return axios.post(API_URL + "e-book/" + bookId, null, { headers: authHeader() });
+    }
+
     getCart(){
         return axios.get(API_URL + "cart", { headers: authHeader() });
     }
@@ -51,6 +55,14 @@ class OrderService {
 
     applyCoupon(orderId, couponId){
         return axios.patch(API_URL + orderId + "/apply-coupon/" + couponId, null,{ headers: authHeader() });
+    }
+
+    sendEOrder(orderId){
+        return axios.post("http://localhost:8080/api/e-orders/orders/" + orderId, null, { headers: authHeader() })
+    }
+
+    downloadEOrder(code){
+        return axios.get("http://localhost:8080/api/e-orders/download/" + code, { headers: authHeader() })
     }
 }
 

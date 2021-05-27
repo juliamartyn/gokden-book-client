@@ -21,8 +21,9 @@ class AddBookComponent extends Component{
             price: '',
             quantity: '',
             startSaleDate: '',
-            selectedFile: '',
-            message: null
+            image: '',
+            eBook: '',
+            eBookPrice: ''
         }
         this.saveBook = this.saveBook.bind(this);
         this.handleChangeDate = this.handleChangeDate.bind(this);
@@ -34,11 +35,13 @@ class AddBookComponent extends Component{
         })
     }
 
-    onChange = (e) =>
-        this.setState({ [e.target.name]: e.target.value });
+    onChange = (e) => this.setState({ [e.target.name]: e.target.value });
 
-    onFileChange = (e) =>
-        this.setState({selectedFile: e.target.files[0]});
+    onImageChange = (e) => this.setState({image: e.target.files[0]});
+
+    onEBookChange = (e) => this.setState({eBook: e.target.files[0]});
+
+    onChangeEBookPrice = (e) =>{this.setState({eBookPrice: e.target.value});}
 
     saveBook = (e) => {
         e.preventDefault();
@@ -50,10 +53,12 @@ class AddBookComponent extends Component{
             description: this.state.description,
             price: this.state.price,
             quantity: this.state.quantity,
-            startSaleDate: this.state.startSaleDate
+            startSaleDate: this.state.startSaleDate,
+            ebookPrice: this.state.eBookPrice
         }
         const formData = new FormData();
-        formData.append('file', this.state.selectedFile);
+        formData.append('image', this.state.image);
+        formData.append('eBookFile', this.state.eBook);
         formData.append("book", JSON.stringify(bookRequest));
 
         BookService.addBook(formData).then(res => {
@@ -65,7 +70,7 @@ class AddBookComponent extends Component{
         return(
             <div>
                 <h2 className="text-center">Add new book</h2>
-                <div style={{"display": "grid", "gridTemplateColumns": "repeat(auto-fit, 30rem)"}}>
+                <div  style={{"display": "grid", "gridTemplateColumns": "repeat(auto-fit, 30rem)", "justify-content": "center"}}>
                     <div>
                     <div className="form-group w-75">
                         <label>Title:</label>
@@ -101,7 +106,7 @@ class AddBookComponent extends Component{
 
                     <div className="form-group w-75">
                         <label>Image:</label>
-                        <input type="file" name="file" className="form-control" onChange={this.onFileChange}/>
+                        <input type="file" name="image" className="form-control" onChange={this.onImageChange}/>
                     </div>
 
                     <div className="form-group w-75">
@@ -110,8 +115,20 @@ class AddBookComponent extends Component{
                                     dateFormat="MMMM d, yyyy"/>
                     </div>
                     </div>
+
+                    <div  className="form-group w-75">
+                    <h3 className="text-center">E-Book</h3>
+                        <div>
+                            <label>E-Book File:</label>
+                            <input type="file" name="e-book" className="form-control" onChange={this.onEBookChange}/>
+                        </div>
+                        <div>
+                            <label>E-Book Price:</label>
+                            <input name="e-book-price" className="form-control" value={this.state.eBookPrice} onChange={this.onChangeEBookPrice}/>
+                        </div>
+                    </div>
                 </div>
-                    <button className="btn btn-success" onClick={this.saveBook}>Save</button>
+                <button className="btn btn-success float-right w-25" onClick={this.saveBook}>Save</button>
 
             </div>
         );

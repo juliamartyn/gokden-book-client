@@ -17,6 +17,7 @@ import Email from "./components/seller/email.component"
 import Discount from "./components/seller/add-discount.component"
 import AddCoupon from "./components/seller/add-coupon.component"
 import Coupons from "./components/customer/coupons.component"
+import AddEBook from "./components/seller/add-e-book.component";
 
 import AddReadAndReturn from "./components/seller/readAndReturn/add-book-to-readreturn.component";
 import ReadAndReturnList from "./components/seller/readAndReturn/readreturn-books-list.component";
@@ -36,6 +37,10 @@ import UserList from "./components/admin/userlist.component";
 import Login from "./components/login.component";
 import Register from "./components/customer/register.component";
 import AuthService from "./services/auth.service";
+
+import DownloadEOrder from "./components/customer/download-e-order.component";
+
+
 
 class App extends Component {
   constructor(props) {
@@ -154,6 +159,11 @@ class App extends Component {
                       Read&Return
                     </Link>
                   </li>
+                  <li className="nav-item">
+                    <Link to={"/read-and-return-book-catalog"} className="nav-link">
+                      Download
+                    </Link>
+                  </li>
                 </ul>
             ) : ''
             }
@@ -205,6 +215,7 @@ class App extends Component {
             <Route exact path="/discount" component={Discount}/>
             <Route exact path="/add-coupon" component={AddCoupon}/>
             <Route exact path="/orders/:id/coupons" component={Coupons}/>
+            <Route path="/add-e-book/books/:id" component={AddEBook}/>
 
             <Route path="/read-and-return/books/:id" component={AddReadAndReturn}/>
             <Route exact path="/read-and-return-books" component={ReadAndReturnList}/>
@@ -219,6 +230,7 @@ class App extends Component {
             <Route exact path="/my-orders" component={OrderOfCurrentUser}/>
             <Route exact path="/pre-orders" component={PreOrderOfCurrentUser}/>
             <Route exact path="/cart" component={Cart}/>
+            <Route exact path="/e-orders/download/:code" component={DownloadEOrder}/>
 
             <Route path="/users/:id/delivery-address" component={EditUserDeliveryAddress}/>
             <Route path="/users/:id" component={EditUser}/>
@@ -227,6 +239,7 @@ class App extends Component {
             <Route exact path="/user-list" component={UserList}/>
             <Route exact path="/login" component={Login}/>
             <Route exact path="/register" component={Register}/>
+
           </Switch>
         </div>
       </div>

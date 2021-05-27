@@ -43,6 +43,10 @@ class BookListComponent extends React.Component {
         this.props.history.push(`/read-and-return/books/${id}`);
     }
 
+    addEBook(id) {
+        this.props.history.push(`/add-e-book/books/${id}`);
+    }
+
     render (){
         return (
             <div>
@@ -80,6 +84,7 @@ class BookListComponent extends React.Component {
                                         <button className="btn btn-outline-info" onClick={() => this.updateBook(book.id)}>Update</button>
                                         <button className="btn btn-outline-danger ml-1" onClick={() => this.deleteBook(book.id)}>Delete</button>
                                         <button className="btn btn-outline-info mt-1" onClick={() => this.readAndReturn(book.id)}>Make available for R&R</button>
+                                        <button className="btn btn-outline-info mt-1" onClick={() => this.addEBook(book.id)}>Add E-Book</button>
                                     </td>
                                 </tr>
                         )

@@ -40,6 +40,10 @@ class BookService {
     getPageableBooks(pageNo){
         return axios.get(API_URL + "page/" + pageNo, { headers: authHeader() });
     }
+
+    addEBook(bookId, eBook){
+        return axios.patch(API_URL + bookId + "/add-e-book", eBook, { headers: authHeader() });
+    }
 }
 
 export default new BookService();
