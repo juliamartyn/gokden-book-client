@@ -41,7 +41,6 @@ import AuthService from "./services/auth.service";
 import DownloadEOrder from "./components/customer/download-e-order.component";
 
 
-
 class App extends Component {
   constructor(props) {
     super(props);
@@ -76,7 +75,7 @@ class App extends Component {
     return (
       <div>
         <nav className="navbar navbar-expand navbar-dark bg-dark sticky-top">
-          <Link to={"/"} className="navbar-brand text-warning">
+          <Link to={"/home"} className="navbar-brand text-warning">
            GoldenBook
           </Link>
           <div className="navbar-nav mr-auto">
@@ -159,11 +158,6 @@ class App extends Component {
                       Read&Return
                     </Link>
                   </li>
-                  <li className="nav-item">
-                    <Link to={"/read-and-return-book-catalog"} className="nav-link">
-                      Download
-                    </Link>
-                  </li>
                 </ul>
             ) : ''
             }
@@ -237,7 +231,7 @@ class App extends Component {
             <Route path="/users/:id/blocked" component={EditUser}/>
             <Route exact path="/add-user" component={AddUser}/>
             <Route exact path="/user-list" component={UserList}/>
-            <Route exact path="/login" component={Login}/>
+            <Route exact path={["/", "/login"]} component={Login}/>
             <Route exact path="/register" component={Register}/>
 
           </Switch>
