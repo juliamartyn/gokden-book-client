@@ -33,8 +33,12 @@ class OrderService {
         return axios.patch(API_URL + id + "/status", status, { headers: authHeader() })
     }
 
-    getOrderListForCurrentUser(){
-        return axios.get(API_URL + "current-user", { headers: authHeader() });
+    getOrderActiveListForCurrentUser(){
+        return axios.get(API_URL + "active", { headers: authHeader() });
+    }
+
+    getOrderCompletedListForCurrentUser(){
+        return axios.get(API_URL + "completed", { headers: authHeader() });
     }
 
     preOrderBook(bookId){

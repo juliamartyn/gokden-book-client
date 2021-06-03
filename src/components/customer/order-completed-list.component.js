@@ -1,28 +1,30 @@
 import React from 'react';
 import OrderService from '../../services/order.service';
 
-class OrderListComponent extends React.Component {
+class OrderCompletedListComponent extends React.Component {
 
     constructor(props){
-        super(props)
+        super(props);
         this.state = {
             orders: []
         }
     }
 
     componentDidMount(){
-        OrderService.getOrderListForCurrentUser().then((response) => {
+        OrderService.getOrderCompletedListForCurrentUser().then((response) => {
             this.setState({ orders: response.data})
         });
     }
 
-
+    activeOrders(){
+        this.props.history.push('/active-orders');
+    }
     render (){
         return (
             <div>
-                <h1 className = "text-center"> Orders</h1>
-                <br></br>
-                <br></br>
+                <h1 className="text-center"> Orders</h1>
+                <button className="btn btn-outline-warning float-right" onClick={() => this.activeOrders()}>Active orders</button>
+                <br/><br/>
                 {
                     this.state.orders != null ?
                         this.state.orders.map(order =>
@@ -64,4 +66,4 @@ class OrderListComponent extends React.Component {
     }
 }
 
-export default OrderListComponent
+export default OrderCompletedListComponent

@@ -29,7 +29,8 @@ import UpdatePricePerDay from "./components/seller/readAndReturn/update-price-pe
 import SubscribeEmailReminder from "./components/customer/readAndReturn/readreturn-subscribe-emailreminding.component";
 
 import PreOrderOfCurrentUser from "./components/customer/pre-orders.component"
-import OrderOfCurrentUser from "./components/customer/order-list.component"
+import ActiveOrdersOfCurrentUser from "./components/customer/order-active-list.component"
+import CompletedOrdersOfCurrentUser from "./components/customer/order-completed-list.component";
 import Cart from "./components/customer/cart.component"
 
 import EditUser from "./components/admin/edit-user.component";
@@ -145,8 +146,8 @@ class App extends Component {
                     </Link>
                   </li>
                   <li className="nav-item" >
-                    <Link to={"/my-orders"} className="nav-link">
-                      MyOrders
+                    <Link to={"/active-orders"} className="nav-link">
+                      My Orders
                     </Link>
                   </li>
                   <li className="nav-item">
@@ -223,7 +224,8 @@ class App extends Component {
 
             <Route exact path="/orders" component={Orders}/>
             <Route path="/orders/:id" component={UpdateOrder}/>
-            <Route exact path="/my-orders" component={OrderOfCurrentUser}/>
+            <Route exact path="/active-orders" component={ActiveOrdersOfCurrentUser}/>
+            <Route exact path="/completed-orders" component={CompletedOrdersOfCurrentUser}/>
             <Route exact path="/pre-orders" component={PreOrderOfCurrentUser}/>
             <Route exact path="/cart" component={Cart}/>
             <Route exact path="/e-orders/download/:code" component={DownloadEOrder}/>
