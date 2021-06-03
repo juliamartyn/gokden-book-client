@@ -83,7 +83,7 @@ class BookListComponent extends React.Component {
                                     <td>
                                         <button className="btn btn-outline-info" onClick={() => this.updateBook(book.id)}>Update</button>
                                         <button className="btn btn-outline-danger ml-1" onClick={() => this.deleteBook(book.id)}>Delete</button>
-                                        <button className="btn btn-outline-info mt-1" onClick={() => this.readAndReturn(book.id)}>Make available for R&R</button>
+                                        <button className="btn btn-outline-info ml-1" onClick={() => this.readAndReturn(book.id)}>Make available for R&R</button>
                                         <button className="btn btn-outline-info mt-1" onClick={() => this.addEBook(book.id)}>Add E-Book</button>
                                     </td>
                                 </tr>

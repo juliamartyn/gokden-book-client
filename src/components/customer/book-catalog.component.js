@@ -54,6 +54,10 @@ class BookCatalogComponent extends React.Component {
         });
     }
 
+    bookDetails(bookId){
+        this.props.history.push(`/books/${bookId}/details`);
+    }
+
     render (){
         return (
             <div>
@@ -69,7 +73,7 @@ class BookCatalogComponent extends React.Component {
                                         <img className="card-img-top" src={`data:image/png;base64,${book.image}`} alt="Card image cap" style={{"width": "150px", "height": "225px"}}></img>
                                     </div>
                                     <div className="card-body">
-                                        <h5 className="card-title mb-0">{book.title}</h5>
+                                        <a className="card-title mb-0 font-weight-bold" style={{"font-size": "18px"}} onClick={() => this.bookDetails(book.id)}>{book.title}</a>
                                         <div>
                                         <p className="card-text mb-1 d-inline">{book.author}</p><button className="btn btn-outline-danger p-0 border-0"
                                                                                                onClick={() => this.addToFavorite(book.author, "AUTHOR")}>

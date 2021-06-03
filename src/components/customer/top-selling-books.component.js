@@ -42,6 +42,10 @@ class AllBooksComponent extends React.Component {
         });
     }
 
+    bookDetails(bookId){
+        this.props.history.push(`/books/${bookId}/details`);
+    }
+
     bookCard(book){
         return <div className="card mt-0" style={{"width": "15rem", "padding": "0px"}} key={book.id}>
             <div className="text-center">
@@ -49,7 +53,7 @@ class AllBooksComponent extends React.Component {
                      alt="Card image cap" style={{"width": "150px", "height": "225px"}}></img>
             </div>
             <div className="card-body">
-                <h5 className="card-title">{book.title}</h5>
+                <a className="card-title mb-0 font-weight-bold" style={{"font-size": "18px"}} onClick={() => this.bookDetails(book.id)}>{book.title}</a>
                 <p className="card-text">{book.author}</p>
                 {book.priceWithDiscount == book.price ? <p className="card-text">${book.price}</p> :
                     <p className="card-text"><del className="text-danger">${book.price}</del> ${book.priceWithDiscount}</p>

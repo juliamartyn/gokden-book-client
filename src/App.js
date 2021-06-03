@@ -7,7 +7,8 @@ import EditUserDeliveryAddress from "./components/customer/edit-delivery-address
 import Profile from "./components/customer/profile.component"
 import Home from "./components/customer/top-selling-books.component";
 import BookCatalog from "./components/customer/book-catalog.component"
-import BookList from "./components/seller/books.component"
+import BookList from "./components/seller/books.component";
+import BookDetails from "./components/customer/book-details.component";
 import AddBook from "./components/seller/add-book.component"
 import EditBook from "./components/seller/edit-book.component"
 import Orders from "./components/seller/orders.component"
@@ -202,6 +203,7 @@ class App extends Component {
             <Route exact path={["/", "/home"]} component={Home}/>
             <Route exact path="/books" component={BookCatalog}/>
             <Route exact path="/book-list" component={BookList}/>
+            <Route path="/books/:id/details" component={BookDetails}/>
             <Route exact path="/add-book" component={AddBook}/>
             <Route path="/books/:id" component={EditBook}/>
             <Route exact path="/report" component={SoldBooksReport}/>
