@@ -20,7 +20,8 @@ class AddCouponComponent extends Component{
             bookQuantity: '',
             customers: [],
             checkedCustomers: [],
-            currentPage: 1
+            currentPage: 1,
+            forAll: ''
         }
         this.createCoupon = this.createCoupon.bind(this);
         this.handleChangeDate = this.handleChangeDate.bind(this);
@@ -49,18 +50,18 @@ class AddCouponComponent extends Component{
 
     onChange = (e) => this.setState({ [e.target.name]: e.target.value });
 
-
     createCoupon = (e) => {
         e.preventDefault();
 
-        let discountRequest = {
+        let couponRequest = {
+            type: this.state.forAll === true ? "SHARED" : "PERSONAL",
             discount: this.state.discount,
             dueDate: this.state.dueDate,
             bookQuantity: this.state.bookQuantity,
             customersId: this.state.checkedCustomers
         }
 
-        CouponService.addCoupon(discountRequest).then(res => {
+        CouponService.addCoupon(couponRequest).then(res => {
             toast('Coupon applied');
         });
     };
@@ -77,6 +78,14 @@ class AddCouponComponent extends Component{
         }
     }
 
+    handleChangeForAll = (event) => {
+        if(event.target.checked === true){
+            this.setState({ forAll: true });
+        } else {
+            this.setState({ forAll: false });
+        }
+    }
+
     render() {
         return(
             <div>
@@ -90,7 +99,7 @@ class AddCouponComponent extends Component{
 
                         LIMIT BY
                         <div className="form-group w-75">
-                            <hr style={{"border": "1px solid #ffc107"}}></hr>
+                            <hr style={{"border": "1px solid #ffc107"}}/>
                             <label>Books quantity :</label>
                             <input placeholder="book quantity" name="bookQuantity" className="form-control" value={this.state.bookQuantity} onChange={this.onChange}/>
                         </div>
@@ -103,7 +112,7 @@ class AddCouponComponent extends Component{
                     </div>
                     <div>
                         CUSTOMERS
-                        <hr style={{"border": "1px solid #ffc107"}}></hr>
+                        <hr style={{"border": "1px solid #ffc107"}}/>
                         {this.state.customers.map(customer =>
                             <label>
                                 <input type="checkbox" value={customer.id} onChange={this.handleChange} key={customer.id}/>
@@ -112,12 +121,16 @@ class AddCouponComponent extends Component{
                         )}
 
                         <div className="text-center">
-                            <button className=" btn btn-outline-info" disabled={this.state.currentPage === 1 ? true : false}
+                            <button className=" btn btn-outline-info" disabled={this.state.currentPage === 1}
                                     onClick={() => this.findPageableUsers(this.state.currentPage - 1)}> Prev </button>
-                            <button className="btn btn-outline-info" disabled={this.state.currentPage === this.state.totalPages ? true : false}
+                            <button className="btn btn-outline-info" disabled={this.state.currentPage === this.state.totalPages}
                                     onClick={() => this.findPageableUsers(this.state.currentPage + 1)}> Next </button>
                             <p>Page {this.state.currentPage} of {this.state.totalPages}</p>
                         </div>
+                        <hr style={{"border": "1px solid #ffc107"}}/>
+                        <label>
+                            <input type="checkbox" onChange={this.handleChangeForAll}/>For all customers
+                        </label>
                     </div>
                 </div>
                 <button className="btn btn-success float-right" onClick={this.createCoupon}>Apply</button>
